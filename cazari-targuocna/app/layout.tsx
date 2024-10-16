@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
-
-
+import Modal from "./components/modals/Modal";
+import LoginModal from "./components/modals/LoginModal";
+import SignupModal from "./components/modals/SignupModal";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,6 +27,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const content = <p>test content</p>;
   return (
     <html lang="en">
       <body
@@ -33,6 +35,8 @@ export default function RootLayout({
       >
         <Navbar />
         <div className="pt-32">{children}</div>
+        <LoginModal />
+        <SignupModal />
       </body>
     </html>
   );
