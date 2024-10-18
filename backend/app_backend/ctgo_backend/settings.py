@@ -47,10 +47,10 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True  
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 REST_FRAMEWORK = {
-    "DEFAUL_AUTHENTICATION_CLASSES": (
+    "DEFAULT_AUTHENTICATION_CLASSES": (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     "DEFAULT_PERMISSION_CLASSES": (
@@ -88,6 +88,7 @@ INSTALLED_APPS = [
     
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     
     'dj_rest_auth',
     'dj_rest_auth.registration',
@@ -108,6 +109,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+   
+    'django.contrib.auth.backends.ModelBackend',  # Default
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth
 ]
 
 ROOT_URLCONF = 'ctgo_backend.urls'
